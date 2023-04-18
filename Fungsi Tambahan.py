@@ -1,4 +1,4 @@
-def jml_rows():
+def jml_rows(): #Menghitung jumlah baris pada CSV
     with open ('dummy.csv','r') as f:
         num_rows = 0
         lines = f.readlines()
@@ -6,7 +6,7 @@ def jml_rows():
             num_rows += 1
     return num_rows
 
-def my_split(string, delimiter):
+def my_split(string, delimiter): #Pengganti fungsi split()
     substrings = []
     current_substring = ''
     for i in range (len(string)-1):
@@ -18,7 +18,7 @@ def my_split(string, delimiter):
     substrings += [current_substring]
     return substrings
 
-def matrix_csv():
+def matrix_csv(): # Mengubah file CSV menjadi matrix 
     with open ('dummy.csv','r') as f:
         num_rows=0
         lines = f.readlines()
