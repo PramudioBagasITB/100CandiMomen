@@ -33,7 +33,7 @@ Jin {c} berhasil dipanggil!''')
 
 if a=='hapusjin':
     def hapusjin():
-        from TesTubes2 import matrix_csv, jml_rows
+        from Fungsi Tambahan import matrix_csv, jml_rows
         matrix=matrix_csv()
         jml_rows=jml_rows()
         c = input('Masukkan username jin : ')
@@ -59,7 +59,7 @@ if a=='hapusjin':
 
 if a=='ubahjin':
     def ubahjin():
-        from TesTubes2 import matrix_csv,jml_rows
+        from Fungsi Tambahan import matrix_csv,jml_rows
         matrix = matrix_csv()
         jml_rows=jml_rows()
         c = input('Masukkan username jin : ')
@@ -87,11 +87,11 @@ if a=='ubahjin':
 
 if a=='bangun':
     def bangun():
-        from TesTubes2 import matrix_csv, jml_rows
+        from Fungsi Tambahan import matrix_csv, jml_rows
         matrix = matrix_csv()
         jml_rows=jml_rows()
         temp = 0
-        list=[3,4,5]
+        list=[3,4,5] #Contoh List bahan bangunan
         for i in range(1,jml_rows):
             matrix[i][2] = int(matrix[i][2])
             if matrix[i][0] == 'pasir':
