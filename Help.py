@@ -1,6 +1,8 @@
-def help():
+from login import login, logout, ambil_status_login
+
+def list_help():
     global username, password, login_status, username_status, password_status
-    if not login_status:
+    if not ambil_status_login:
         print("=========== HELP ===========")
         print("1. login")
         print("   Untuk masuk menggunakan akun")
