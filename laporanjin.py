@@ -17,7 +17,7 @@ def laporanjin() :
 
     # total jin pengumpul : ...
     totJinkum = 0
-    rowU2 = next(raederU) 
+    rowU2 = next(readerU) 
     while not EOP(rowU2) :
         if rowU2[2] == "jin_pengumpul" :
             totJinkum += 1
