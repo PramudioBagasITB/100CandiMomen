@@ -1,15 +1,8 @@
 import csv
 import RNG as rand
-#bahan = open("bahan_bangunan.csv", 'w') ##upd
-#writer = csv.writer(bahan, delimiter=',')
-bahanR = open("bahan_bangunan.csv", 'r') # bahan = read_bahan("bahan_bangunan.csv") ##upd
-reader = csv.reader(bahanR, delimiter=',')
-cols = ['nama', 'deskripsi', 'jumlah']
-
-candi = open("candi.csv", 'r') # candi = read_candi("candi.csv") ##upd
-readerC = csv.reader(candi, delimiter=',')
-user = open("user.csv", 'r') # user = read_user("user.csv") ##upd
-readerU = csv.reader(user, delimiter=',')
+bahan = read_bahan("bahan_bangunan.csv") ##upd
+candi = read_candi("candi.csv") ##upd
+user = read_user("user.csv") ##upd
 
 def kumpul(x) : # for kumpul biasa dan batch kumpul
     totJinkum = 0
