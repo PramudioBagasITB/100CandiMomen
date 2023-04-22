@@ -5,9 +5,20 @@ writer = csv.writer(bahan, delimiter=',')
 bahanR = open("bahan_bangunan.csv", 'r')
 reader = csv.reader(bahanR, delimiter=',')
 cols = ['nama', 'deskripsi', 'jumlah']
-def kumpul(x) : 
+
+candi = open("candi.csv", 'r')
+readerC = csv.reader(candi, delimiter=',')
+user = open("user.csv", 'r')
+readerU = csv.reader(user, delimiter=',')
+
+def kumpul(x) : # for kumpul biasa dan batch kumpul
+    totJinkum = 0
+    rowU2 = next(readerU) 
+    while not EOP(rowU2) : # note : function eop belum ada
+        if rowU2[2] == "jin_pengumpul" :
+            totJinkum += 1
     if x == "indiv" : # jin pengumpul indiv
-        pasir = rand()
+        pasir = rand() # note : function rand belum dikasih parameter
         batu = rand()
         air = rand()
         row = next(reader)
@@ -21,13 +32,13 @@ def kumpul(x) :
         # isi file dalam csv bahan
         writer.writerow(['pasir', 'p', str(pasir + pasir_dari_csv)])
         writer.writerow(['batu', 'b', str(batu + batu_dari_csv)])
-        writer.writerow(['air', 'a', str(air + air_dari_csv)])
+        writer.writerow(['air', 'a', str(air + air_dari_csv)]) # belum buat file.close dan save
     else : # batch kumpul
         row = next(reader)
         pasir_dari_csv = (row[0], int(row[2])
         batu_dari_csv = (row[1], int(row[2])
         air_dari_csv = (row[2], int(row[2])
-        n =  # jumlah jin pengumpul
+        n = totJinkum # jumlah jin pengumpul
         if n > 0 : # ada jin pengumpul
             pasir = [0 for i in range(n)]
             batu = [0 for i in range(n)]
@@ -35,8 +46,8 @@ def kumpul(x) :
             mat = [pasir,batu,air]
             for i in range(3) : 
                 for j in range(n) :
-                    mat[i][j] = rand()
-            sumpas = 0
+                    mat[i][j] = rand() # note : function random belum dikasih parameter
+            sumpas = 0 # sum pasir; sum batu; sum air
             sumbat = 0 
             sumair = 0
             for i in range(n) :
@@ -53,12 +64,17 @@ def kumpul(x) :
             # isi dalam file csv bahan
             writer.writerow(['pasir', 'p', str(sumpas + pasir_dari_csv)])
             writer.writerow(['batu', 'b', str(sumbat + batu_dari_csv)])
-            writer.writerow(['air', 'a', str(sumair + air_dari_csv)])
+            writer.writerow(['air', 'a', str(sumair + air_dari_csv)]) # belum buat file.close dan save
         else : # tidak ada jin pengumpul
             print("Kumpul gagal. Anda tidak punya jin pengumpul. Silahkan summon terlebih dahulu.")
 
 def bangun() : 
-    n = # jumlah jin pembangun
+    totJinban = 0
+    rowU3 = next(readerU)
+    while not EOP(rowU3) : # function eop belum ada
+        if rowU3[2] == "jin_pembangun" :
+            totJinban += 1
+    n = totJinban# jumlah jin pembangun
     if n > 0 : # jika ada jin pembangun
         pasir = [0 for i in range(n)]
         batu = [0 for i in range(n)]
