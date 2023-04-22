@@ -1,43 +1,37 @@
 import csv
 import RNG as rand
-bahan = open("bahan_bangunan.csv", 'w')
-writer = csv.writer(bahan, delimiter=',')
-bahanR = open("bahan_bangunan.csv", 'r')
+#bahan = open("bahan_bangunan.csv", 'w') ##upd
+#writer = csv.writer(bahan, delimiter=',')
+bahanR = open("bahan_bangunan.csv", 'r') # bahan = read_bahan("bahan_bangunan.csv") ##upd
 reader = csv.reader(bahanR, delimiter=',')
 cols = ['nama', 'deskripsi', 'jumlah']
 
-candi = open("candi.csv", 'r')
+candi = open("candi.csv", 'r') # candi = read_candi("candi.csv") ##upd
 readerC = csv.reader(candi, delimiter=',')
-user = open("user.csv", 'r')
+user = open("user.csv", 'r') # user = read_user("user.csv") ##upd
 readerU = csv.reader(user, delimiter=',')
 
 def kumpul(x) : # for kumpul biasa dan batch kumpul
     totJinkum = 0
-    rowU2 = next(readerU) 
-    while not EOP(rowU2) : # note : function eop belum ada
-        if rowU2[2] == "jin_pengumpul" :
-            totJinkum += 1
-    if x == "indiv" : # jin pengumpul indiv
+    for i in range(102) : ##upd
+        if user[2][i] == "jin_pengumpul" :
+            totJinkum += 1 
+    tempMat = [0,0,0] # utk nyimpen data pasir,batu,air sementara 
+    for i in range(3) : 
+        tempMat[i] = bahan[i][2] ##upd
+    pasir_dari_csv = tempMat[0]
+    batu_dari_csv = tempMat[1]
+    air_dari_csv = tempMat[2]
+    
+    if x == "indiv" : # jin pengumpul indiv (kumpul biasa)
         pasir = rand() # note : function rand belum dikasih parameter
         batu = rand()
         air = rand()
-        row = next(reader)
-        tempMat = [0,0,0]
-        for row in csv.reader(bahanR) :
-            tempMat = int(row[2])
-        pasir_dari_csv = tempMat[0]
-        batu_dari_csv = tempMat[1]
-        air_dari_csv = tempMat[2]
         print(f"Jin menemukan {pasir} pasir, {batu} batu, dan {air} air.")
         # isi file dalam csv bahan
-        writer.writerow(['pasir', 'p', str(pasir + pasir_dari_csv)])
-        writer.writerow(['batu', 'b', str(batu + batu_dari_csv)])
-        writer.writerow(['air', 'a', str(air + air_dari_csv)]) # belum buat file.close dan save
+        totMat = [["pasir", "p", str(pasir+pasir_dari_csv)], ["batu", "b",str(batu+batu_dari_csv)], ["air", "a", str(air+air_dari_csv)]]
+        write_bahan(bahan_bangunan, totMat) ##upd
     else : # batch kumpul
-        row = next(reader)
-        pasir_dari_csv = (row[0], int(row[2])
-        batu_dari_csv = (row[1], int(row[2])
-        air_dari_csv = (row[2], int(row[2])
         n = totJinkum # jumlah jin pengumpul
         if n > 0 : # ada jin pengumpul
             pasir = [0 for i in range(n)]
@@ -56,22 +50,16 @@ def kumpul(x) : # for kumpul biasa dan batch kumpul
                 sumair += mat[2][j]
             print(f"Mengerahkan {n} jin untuk mengumpulkan bahan.")
             print(f"Jin menemukan total {sumpas} pasir, {sumbat} batu, dan {sumair} air.")
-            for row in csv.reader(bahanR) :
-                tempMat = int(row[2])
-            pasir_dari_csv = tempMat[0]
-            batu_dari_csv = tempMat[1]
-            air_dari_csv = tempMat[2]
             # isi dalam file csv bahan
-            writer.writerow(['pasir', 'p', str(sumpas + pasir_dari_csv)])
-            writer.writerow(['batu', 'b', str(sumbat + batu_dari_csv)])
-            writer.writerow(['air', 'a', str(sumair + air_dari_csv)]) # belum buat file.close dan save
+            totMat = [["pasir", "p", str(sumpas+pasir_dari_csv)], ["batu", "b",str(sumbat+batu_dari_csv)], ["air", "a", str(sumair+air_dari_csv)]]
+            write_bahan(bahan_bangunan, totMat) ##upd
         else : # tidak ada jin pengumpul
             print("Kumpul gagal. Anda tidak punya jin pengumpul. Silahkan summon terlebih dahulu.")
 
 def bangun() : 
     totJinban = 0
     rowU3 = next(readerU)
-    while not EOP(rowU3) : # function eop belum ada
+    while not EOP(rowU3) : 
         if rowU3[2] == "jin_pembangun" :
             totJinban += 1
     n = totJinban# jumlah jin pembangun
