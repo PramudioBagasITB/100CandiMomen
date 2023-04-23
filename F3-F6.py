@@ -1,34 +1,41 @@
 a= input('>>> ')
 if a=='summonjin':
-    def summonjin():
+        def summonjin():
         print('''Jenis jin yang dapat dipanggil:
         (1) Pengumpul - Bertugas mengumpulkan bahan bangunan
         (2) Pembangun - Bertugas membangun candi''')
-        def summon():
+        temp=0
+        b=int(input('Masukkan nomor jenis jin yang ingin dipanggil : '))
+        while b != 1 and b != 2:
+            print(f'Tidak ada jenis jin bernomor "{b}"!')
             b=int(input('Masukkan nomor jenis jin yang ingin dipanggil : '))
-            if b != 1 and b != 2:
-                print(f'Tidak ada jenis jin bernomor "{b}"!')
-                summon()
-            else:
-                if b==1:
-                    print('Memilih jin "Pengumpul".')
-                    e='jin_pengumpul'
-                elif b == 2:
-                    print('Memilih jin "Pembangun"')
-                    e = 'jin_pembangun'
-                c = input('Masukkan username jin : ')
-                d = input('Masukkan password jin : ')
-                print(f'''
+        else:
+            if b==1:
+                print('Memilih jin "Pengumpul".')
+                e='jin_pengumpul'
+            elif b == 2:
+                print('Memilih jin "Pembangun"')
+                e = 'jin_pembangun'
+            c = input('Masukkan username jin : ')
+            d = input('Masukkan password jin : ')
+            while len(d)<5 or len(d)>15:
+                print('Password panjangnya harus 5-25 karakter!')
+                d=input('Masukkan password jin : ')
+            print(f'''
 Mengumpulkan sesajen...
 Menyerahkan sesajen...
 Membacakan mantra
 
 Jin {c} berhasil dipanggil!''')
-                list=[c,d,e]
-                with open('dummy.csv', 'a') as file:
-                    line = ';'.join(list) + '\n'
-                    file.write(line)
-        summon()
+            for i in range(2,102):
+                if arr_result[0][i][0]==i:
+                    arr_result[0][i][0],arr_result[0][i][1],arr_result[0][i][2]=c,d,e
+                    break
+                else:
+                    temp+=1
+            if temp>0:
+                print('Jumlah jin sudah lebih dari 100!')
+        return arr_result
     summonjin()
 
 if a=='hapusjin':
