@@ -50,7 +50,8 @@ if a=='hapusjin':
                     break
                 elif b.upper()=='Y':
                     for i in range(102):
-                        arr_result[1][i][0], arr_result[1][i][1], arr_result[1][i][2], arr_result[1][i][3], arr_result[1][i][4] = i, '', 0, 0, 0
+                        if arr_result[1][i][1]:
+                                arr_result[1][i][0], arr_result[1][i][1], arr_result[1][i][2], arr_result[1][i][3], arr_result[1][i][4] = i, '', 0, 0, 0
                     arr_result[0][i][0], arr_result[0][i][1], arr_result[0][i][2] = i, '', ''
                     print('Jin telah dimusnahkan dari alam semesta')
                     break
