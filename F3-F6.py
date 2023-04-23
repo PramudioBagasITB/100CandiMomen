@@ -40,56 +40,55 @@ Jin {c} berhasil dipanggil!''')
 
 if a=='hapusjin':
     def hapusjin():
-        from Fungsi Tambahan import matrix_csv, jml_rows
-        matrix=matrix_csv()
-        jml_rows=jml_rows()
         c = input('Masukkan username jin : ')
-        i = 1
-        while i < jml_rows:
-            if matrix[i][0] == c:
+        temp=0
+        for i in range(2,102):
+            if arr_result[0][i][0] == c:
                 b = input(f'Apakah anda yakin ingin menghapus jin dengan username {a} (Y/N)? ')
-                if b == 'N':
+                if b.upper() == 'N':
                     print(f'{c} tidak jadi dihapus')
                     break
-                else:
-                    with open('dummy.csv', 'r') as f:
-                        rows = f.readlines()
-                    del rows[i]
-                    with open('dummy.csv', 'w') as file:
-                        file.writelines(rows)
+                elif b.upper()=='Y':
+                    for i in range(102):
+                        arr_result[1][i][0], arr_result[1][i][1], arr_result[1][i][2], arr_result[1][i][3], arr_result[1][i][4] = i, '', 0, 0, 0
+                    arr_result[0][i][0], arr_result[0][i][1], arr_result[0][i][2] = i, '', ''
                     print('Jin telah dimusnahkan dari alam semesta')
                     break
-            i += 1
-        else:
+            else:
+                temp += 1
+        if temp==100:
             print('Tidak ada jin dengan username tersebut')
+        return arr_result
     hapusjin()
 
 if a=='ubahjin':
     def ubahjin():
-        from Fungsi Tambahan import matrix_csv,jml_rows
-        matrix = matrix_csv()
-        jml_rows=jml_rows()
         c = input('Masukkan username jin : ')
-        temp = 1
-        for i in range(1,jml_rows):
-            if matrix[i][0] == c:
-                if matrix[i][2]=='jin_pengumpul':
+        temp = 0
+        for i in range(2,102):
+            if arr_result[0][i][0] == c:
+                if arr_result[0][i][2]=='jin_pengumpul':
                     pengumpul=input('Jin ini bertipe “Pengumpul”. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ')
-                    matrix[i][2]='jin_pembangun'
-                    print('Jin telah berhasil diubah.')
-                elif matrix[i][2]=='jin_pembangun':
-                    pengumpul=input('Jin ini bertipe “Pembangun”. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ')
-                    matrix[i][2]='jin_pengumpul'
-                    print('Jin telah berhasil diubah.')
-                with open('dummy.csv', 'w') as file:
-                    for i in range(jml_rows):
-                        line = ';'.join(matrix[i]) + '\n'
-                        file.write(line)
+                    if pengumpul.upper()=='N':
+                        print('Jin tidak jadi diubah.')
+                        break
+                    elif pengumpul.upper()=='Y':
+                        arr_result[0][i][2]='jin_pembangun'
+                        print('Jin telah berhasil diubah.')
+                elif arr_result[0][i][2]=='jin_pembangun':
+                    pembangun=input('Jin ini bertipe “Pembangun”. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ')
+                    if pembangun.upper() == 'N':
+                        print('Jin tidak jadi diubah.')
+                        break
+                    elif pembangun.upper() == 'Y':
+                        arr_result[0][i][2] = 'jin_pengumpul'
+                        print('Jin telah berhasil diubah.')
+                break
             else:
                 temp+=1
-                if temp==jml_rows:
+                if temp==100:
                     print('Tidak ada jin dengan username tersebut.')
-                    break
+        return arr_result
     ubahjin()
 
 if a=='bangun':
