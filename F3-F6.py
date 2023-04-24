@@ -28,14 +28,13 @@ Membacakan mantra
 
 Jin {c} berhasil dipanggil!''')
             for i in range(2,102):
-                if arr_result[0][i][0]==i:
-                    arr_result[0][i][0],arr_result[0][i][1],arr_result[0][i][2]=c,d,e
+                if users[i][0]==i:
+                    users[i][0],users[i][1],users[i][2]=c,d,e
                     break
                 else:
                     temp+=1
             if temp>0:
                 print('Jumlah jin sudah lebih dari 100!')
-        return arr_result
     summonjin()
 
 if a=='hapusjin':
@@ -43,23 +42,22 @@ if a=='hapusjin':
         c = input('Masukkan username jin : ')
         temp=0
         for i in range(2,102):
-            if arr_result[0][i][0] == c:
+            if users[i][0] == c:
                 b = input(f'Apakah anda yakin ingin menghapus jin dengan username {a} (Y/N)? ')
                 if b.upper() == 'N':
                     print(f'{c} tidak jadi dihapus')
                     break
                 elif b.upper()=='Y':
                     for i in range(102):
-                        if arr_result[1][i][1]:
-                                arr_result[1][i][0], arr_result[1][i][1], arr_result[1][i][2], arr_result[1][i][3], arr_result[1][i][4] = i, '', 0, 0, 0
-                    arr_result[0][i][0], arr_result[0][i][1], arr_result[0][i][2] = i, '', ''
+                        if candi[i][1]==c:
+                                candi[i][0], candi[i][1], candi[i][2], candi[i][3], candi[i][4] = i, '', 0, 0, 0
+                    users[i][0], users[i][1], users[i][2] = i, '', ''
                     print('Jin telah dimusnahkan dari alam semesta')
                     break
             else:
                 temp += 1
         if temp==100:
             print('Tidak ada jin dengan username tersebut')
-        return arr_result
     hapusjin()
 
 if a=='ubahjin':
@@ -67,29 +65,28 @@ if a=='ubahjin':
         c = input('Masukkan username jin : ')
         temp = 0
         for i in range(2,102):
-            if arr_result[0][i][0] == c:
-                if arr_result[0][i][2]=='jin_pengumpul':
+            if users[i][0] == c:
+                if users[i][2]=='jin_pengumpul':
                     pengumpul=input('Jin ini bertipe “Pengumpul”. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ')
                     if pengumpul.upper()=='N':
                         print('Jin tidak jadi diubah.')
                         break
                     elif pengumpul.upper()=='Y':
-                        arr_result[0][i][2]='jin_pembangun'
+                        users[i][2]='jin_pembangun'
                         print('Jin telah berhasil diubah.')
-                elif arr_result[0][i][2]=='jin_pembangun':
+                elif users[i][2]=='jin_pembangun':
                     pembangun=input('Jin ini bertipe “Pembangun”. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ')
                     if pembangun.upper() == 'N':
                         print('Jin tidak jadi diubah.')
                         break
                     elif pembangun.upper() == 'Y':
-                        arr_result[0][i][2] = 'jin_pengumpul'
+                        users[i][2] = 'jin_pengumpul'
                         print('Jin telah berhasil diubah.')
                 break
             else:
                 temp+=1
                 if temp==100:
                     print('Tidak ada jin dengan username tersebut.')
-        return arr_result
     ubahjin()
 
 if a=='bangun':
